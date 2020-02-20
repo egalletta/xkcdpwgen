@@ -2,12 +2,12 @@
 import argparse
 import secrets
 import random
-
+//read from dictionary
 with open('words.txt', 'r') as f:
     wordlist = f.readlines()
 
 nums = range(0, 9)
-symbs = ["~,", "!",  "@", "#", "$", "%", "^", "&", "*", ";", ":"]
+symbs = ["~,", "!",  "@", "#", "$", "%", "^", "&", "*", ";", ":"] //symbol set to select from
 parser = argparse.ArgumentParser()
 parser.add_argument("-w", "--words", type=int, help="include WORDS words in the password", default=4)
 parser.add_argument("-c", "--caps", type=int, help="capitalize the first letter of CAPS random words", default=0)
@@ -17,16 +17,20 @@ args = parser.parse_args()
 
 password = []
 
+//add words to password list
 for num_words in range(args.words):
     password.append(secrets.choice(wordlist).replace("\n", ""))
 
+//capitlize random words according to -c
 cap_indexes = random.sample(range(0, len(password)), args.caps)
 for i in cap_indexes:
     password[i] = password[i].capitalize()
 
+//insert numbers before, after, and/or between random words
 for num_nums in range(args.numbers):
     password.insert(random.randint(0, len(password)), str(secrets.choice(nums)))
 
+//insert symbols before, after, and/or between random words and numbers
 for num_symbs in range(args.symbols):
     password.insert(random.randint(0,len(password)), secrets.choice(symbs))
 
