@@ -2,6 +2,8 @@
 Constructs complex, easy to use passwords
 
 
+Created for CY 2550 at Northeastern as a part of analyzing password strengths, based on [xkcd #936](https://xkcd.com/936/)
+
 usage: xkcdpwgen [-h] [-w WORDS] [-c CAPS] [-n NUMBERS] [-s SYMBOLS]
 
 optional arguments:
